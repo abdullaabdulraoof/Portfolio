@@ -74,7 +74,8 @@ app.post('/a', async (req, res) => {
 });
 
 // Start Server
-app.listen(port, () => {
-  console.log(`🚀 Server running on http://localhost:${port}`);
+app.listen(process.env.PORT || 3000, () => {
+  console.log(`🚀 Server running`);
 });
+
   
