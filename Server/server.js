@@ -27,18 +27,14 @@ app.use(bodyParser.json());
 
 
 
+
+// ✅ Use this simplified CORS setup
 app.use(cors({
-  origin: function (origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
+  origin: ['https://abdullaabdulraoof.vercel.app'],
   methods: ['GET', 'POST'],
   allowedHeaders: ['Content-Type'],
-  credentials: true
 }));
+
 
 // API to receive contact form
 app.post('/a', async (req, res) => {
