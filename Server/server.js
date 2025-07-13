@@ -55,7 +55,9 @@ app.post('/a', async (req, res) => {
     res.status(500).json({ success: false, error: "Failed to send/save message" });
   }
 });
-
+app.get("/", (req, res) => {
+  res.send("✅ Portfolio Backend is running!");
+});
 // Start Server
 app.listen(port, () => {
   console.log(`🚀 Server running on http://localhost:${port}`);
