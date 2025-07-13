@@ -21,11 +21,14 @@ const port = 3000;
 
 app.use(bodyParser.json());
 app.use(cors({
-  origin: 'https://abdullaabdulraoof.vercel.app',
+  origin: [
+    'https://abdullaabdulraoof.vercel.app',
+    'https://portfolio-qbr1l6gzy-abdullaabdulraoofs-projects.vercel.app',
+    'https://portfolio-backend-of6u.onrender.com'
+  ],
   methods: ['GET', 'POST'],
   allowedHeaders: ['Content-Type'],
 }));
-
 // API to receive contact form
 app.post('/a', async (req, res) => {
   const { name, email, message } = req.body;

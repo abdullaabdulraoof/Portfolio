@@ -20,10 +20,11 @@ const Contact = () => {
             const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/a`, {
                 method: "POST",
                 headers: {
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/json",
                 },
-                body: JSON.stringify(formData)
+                body: JSON.stringify(formData),
             });
+
             if (!res.ok) {
                 const errorText = await res.text();
                 console.error("Server returned:", errorText);
