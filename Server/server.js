@@ -22,7 +22,10 @@ const allowedOrigins = [
   'https://abdullaabdulraoof.vercel.app',
   'https://portfolio-ddlwjuzu9-abdullaabdulraoofs-projects.vercel.app'
 ];
+
 app.use(bodyParser.json());
+
+
 
 app.use(cors({
   origin: function (origin, callback) {
@@ -32,13 +35,11 @@ app.use(cors({
       callback(new Error('Not allowed by CORS'));
     }
   },
-  methods: ['GET', 'POST', 'OPTIONS'],
+  methods: ['GET', 'POST'],
   allowedHeaders: ['Content-Type'],
-  credentials: true,
+  credentials: true
 }));
 
-// Optional: handle preflight
-app.options('*', cors());
 // API to receive contact form
 app.post('/a', async (req, res) => {
   const { name, email, message } = req.body;
