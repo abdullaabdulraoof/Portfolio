@@ -2,7 +2,7 @@ import React from 'react'
 
 const Footer = () => {
   return (
-      <div className="flex flex-col justify-center items-center p-2 w-full pt-8 border-gray-300 dark:border-gray-700 text-center bottom-0 bg-[#020817]">
+      <div className="flex flex-col justify-center items-center p-2 w-full pt-8 border-gray-300 dark:border-gray-700 text-center bottom-0 bg-white dark:bg-[#020817]">
           <a href='' className="text-indigo-500">abdullaabdulraoof66@gmail.com</a>
           <span className="inline-flex mt-4">
               <a className="text-gray-500 dark:text-gray-400">
