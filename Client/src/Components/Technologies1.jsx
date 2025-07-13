@@ -8,7 +8,7 @@ const Technologies1 = () => {
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-4 gap-y-6 p-6 justify-items-center">
                     <Technologies src="./assets/mongodb.svg" title="MongoDB" />
                     <Technologies src="./assets/express1.svg" title="Express js" />
-                    <Technologies src="./assets/React.svg" title="React" />
+                    <Technologies src="./assets/react.svg" title="React" />
                     <Technologies src="./assets/nodejs.svg" title="Node js" />
                 </div>
             </div>
