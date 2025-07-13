@@ -9,7 +9,7 @@ dotenv.config();
 
 
 // Connect MongoDB
-mongoose.connect('mongodb://localhost:27017/contact', {
+mongoose.connect('mongodb+srv://portfolio_user:4Q8LhZjhzDQG6SgV@contact.trepkmk.mongodb.net/contact?retryWrites=true&w=majority', {
   useNewUrlParser: true,
   useUnifiedTopology: true
 }).then(() => console.log("✅ MongoDB Connected"))
