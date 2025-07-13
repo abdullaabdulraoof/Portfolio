@@ -4,6 +4,9 @@ import { Contact } from "./models/contact.js";
 import bodyParser from "body-parser";
 import cors from "cors";
 import nodemailer from "nodemailer";
+import dotenv from 'dotenv';
+dotenv.config();
+
 
 // Connect MongoDB
 mongoose.connect('mongodb://localhost:27017/contact', {
@@ -31,9 +34,9 @@ app.post('/a', async (req, res) => {
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
-        user: "contactabdullaabdulraoof@gmail.com",
-        pass: "wvna lqlg qehf zvgs"  // Gmail App Password
-      },
+  user: process.env.GMAIL_USER,
+  pass: process.env.GMAIL_PASS
+},
     });
 
     const info = await transporter.sendMail({
