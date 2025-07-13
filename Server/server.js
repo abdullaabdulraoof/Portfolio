@@ -21,9 +21,9 @@ const port = 3000;
 
 app.use(bodyParser.json());
 app.use(cors({
-  origin: 'https://abdullaabdulraoof.vercel.app', // ✅ allow your frontend
+  origin: 'https://abdullaabdulraoof.vercel.app',
   methods: ['GET', 'POST'],
-  credentials: true
+  allowedHeaders: ['Content-Type'],
 }));
 
 // API to receive contact form
