@@ -17,13 +17,20 @@ const Contact = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const res = await fetch("${import.meta.env.VITE_BACKEND_URL}/a", {
+            const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/a`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify(formData)
             });
+            if (!res.ok) {
+                const errorText = await res.text();
+                console.error("Server returned:", errorText);
+            } else {
+                const data = await res.json();
+                console.log(data);
+            }
 
             const data = await res.json();
             if (data.success) {

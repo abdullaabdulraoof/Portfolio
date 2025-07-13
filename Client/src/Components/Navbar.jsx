@@ -19,10 +19,10 @@ const Navbar = ({ darkMode, toggleTheme }) => {
                 <button onClick={toggleTheme} className='w-[28px] h-[28px]'>
                     {darkMode ? (
                         // 🌙 Moon icon (for light mode, click to go dark)
-                        <img src="src/assets/moon.svg" alt="Moon" className="invert" />
+                        <img src="public/assets/moon.svg" alt="Moon" className="invert" />
                     ) : (
                         // ☀️ Sun icon (for dark mode, click to go light)
-                        <img src="src/assets/sun.svg" alt="Sun" className="" />
+                            <img src="public/assets/sun.svg" alt="Sun" className="" />
                     )}
                 </button>
             </div>
