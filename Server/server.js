@@ -18,21 +18,27 @@ mongoose.connect('mongodb+srv://portfolio_user:4Q8LhZjhzDQG6SgV@contact.trepkmk.
 // Setup Express
 const app = express();
 const port = 3000;
-
+const allowedOrigins = [
+  'https://abdullaabdulraoof.vercel.app',
+  'https://portfolio-ddlwjuzu9-abdullaabdulraoofs-projects.vercel.app'
+];
 app.use(bodyParser.json());
 
 app.use(cors({
-  origin: [
-    "https://abdullaabdulraoof.vercel.app",
-    "https://portfolio-ddlwjuzu9-abdullaabdulraoofs-projects.vercel.app"
-  ],
-  methods: ["GET", "POST", "OPTIONS"],
-  allowedHeaders: ["Content-Type"],
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  methods: ['GET', 'POST', 'OPTIONS'],
+  allowedHeaders: ['Content-Type'],
   credentials: true,
 }));
 
-app.options("*", cors()); // handle preflight
-
+// Optional: handle preflight
+app.options('*', cors());
 // API to receive contact form
 app.post('/a', async (req, res) => {
   const { name, email, message } = req.body;

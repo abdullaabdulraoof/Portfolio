@@ -19,6 +19,7 @@ const Contact = () => {
         try {
             await fetch(`${import.meta.env.VITE_BACKEND_URL}/a`, {
                 method: "POST",
+                method: "OPTIONS",
                 headers: {
                     "Content-Type": "application/json"
                 },
