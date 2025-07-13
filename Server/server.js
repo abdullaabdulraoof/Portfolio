@@ -20,7 +20,6 @@ const app = express();
 const port = 3000;
 
 app.use(bodyParser.json());
-import cors from "cors";
 
 app.use(cors({
   origin: [
