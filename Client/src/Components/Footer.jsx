@@ -1,5 +1,5 @@
 import { useState } from 'react';
-
+import { ToastContainer, toast } from 'react-toastify';
 const Footer = () => {
     const [formData, setFormData] = useState({
         name: "",
@@ -27,20 +27,63 @@ const Footer = () => {
 
             const data = await res.json();
             if (data.success) {
-                alert("✅ Message sent successfully!");
+
+                // alert("✅ Message sent successfully!");
+                toast.success('Message sent successfully', {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: false,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
                 console.log("Preview URL:", data.previewUrl);
                 setFormData({ name: "", email: "", message: "" });
             } else {
-                alert("❌ Failed to send message.");
+                // alert("❌ Failed to send message.");
+                toast.warning('Failed to send message.', {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: false,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
             }
         } catch (err) {
             console.error("Error:", err);
-            alert("❌ Something went wrong.");
+            // alert("❌ Something went wrong.");
+            toast.warning('Something went wrong.', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: false,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
         }
     };
 
     return (
         <section className="text-gray-700 dark:text-gray-300 body-font relative bg-white dark:bg-[#020817] transition-colors duration-300">
+            <ToastContainer
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick={false}
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+            />
             <div className="container px-5 py-24 mx-auto">
                 <div className="flex flex-col text-center w-full mb-12">
                     <h1 className="title-font text-3xl sm:text-4xl font-bold mb-4 text-black dark:text-white">Let's Connect</h1>
