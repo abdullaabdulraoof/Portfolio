@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 const Navbar = ({ darkMode, toggleTheme }) => {
     return (
         <nav className='fixed top-0 w-full bg-background/80 backdrop-blur-md z-50 border-b border-gray-700'>
@@ -6,11 +8,12 @@ const Navbar = ({ darkMode, toggleTheme }) => {
                     Abdulla.
                 </h1>
                 <ul className='hidden md:flex gap-10 '>
-                    <li className='text-sm font-semibold'>Home</li>
-                    <li className='text-sm font-semibold'>About</li>
-                    <li className='text-sm font-semibold'>Projects</li>
-                    <li className='text-sm font-semibold'>Contact</li>
+                    <li><Link to="/" className='text-sm font-semibold'>Home</Link></li>
+                    <li><Link to="/technologies1" className='text-sm font-semibold'>Technologies</Link></li>
+                    <li><Link to="/projects" className='text-sm font-semibold'>Projects</Link></li>
+                    <li><Link to="/contact" className='text-sm font-semibold'>Contact</Link></li>
                 </ul>
+
 
                 {/* 🌗 Theme Toggle Button */}
                 <button onClick={toggleTheme} className='w-[28px] h-[28px]'>

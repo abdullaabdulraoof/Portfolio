@@ -1,4 +1,5 @@
 import Technologies from "./Technologies"
+
 const Technologies1 = () => {
     return (
         <section className='min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 lg:px-4 bg-gray-100 dark:bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] dark:from-[#0d1117] dark:via-[#0a0e14] dark:to-[#020817] py-16 transition-colors duration-300'>

@@ -1,6 +1,6 @@
-import Cards from './Components/Cards'
+import Cards from "./Cards"
 
-const projects = () => {
+const Projects = () => {
   return (
       <section className='min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 lg:px-4 bg-white text-black dark:bg-[#020817] dark:text-white py-24 transition-colors duration-300'>
           <div className='max-w-4xl mx-auto text-center mt-10 lg:mt-0 mb-[60px]'>
@@ -17,4 +17,4 @@ const projects = () => {
   )
 }
 
-export default projects
+export default Projects
