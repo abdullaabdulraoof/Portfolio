@@ -20,15 +20,17 @@ const app = express();
 const port = 3000;
 
 app.use(bodyParser.json());
+import cors from "cors";
+
 app.use(cors({
   origin: [
-    'https://abdullaabdulraoof.vercel.app',
-    'https://portfolio-qbr1l6gzy-abdullaabdulraoofs-projects.vercel.app',
-    'https://portfolio-backend-of6u.onrender.com'
+    "https://abdullaabdulraoof.vercel.app",
+    "https://portfolio-ddlwjuzu9-abdullaabdulraoofs-projects.vercel.app"
   ],
-  methods: ['GET', 'POST'],
-  allowedHeaders: ['Content-Type'],
+  methods: ["GET", "POST"],
+  allowedHeaders: ["Content-Type"]
 }));
+
 // API to receive contact form
 app.post('/a', async (req, res) => {
   const { name, email, message } = req.body;

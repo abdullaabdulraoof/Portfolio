@@ -17,13 +17,14 @@ const Contact = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/a`, {
+            await fetch(`${import.meta.env.VITE_BACKEND_URL}/a`, {
                 method: "POST",
                 headers: {
-                    "Content-Type": "application/json",
+                    "Content-Type": "application/json"
                 },
-                body: JSON.stringify(formData),
+                body: JSON.stringify(formData)
             });
+
 
             if (!res.ok) {
                 const errorText = await res.text();
