@@ -20,7 +20,11 @@ const app = express();
 const port = 3000;
 
 app.use(bodyParser.json());
-app.use(cors());
+app.use(cors({
+  origin: 'https://abdullaabdulraoof.vercel.app', // ✅ allow your frontend
+  methods: ['GET', 'POST'],
+  credentials: true
+}));
 
 // API to receive contact form
 app.post('/a', async (req, res) => {
