@@ -6,10 +6,10 @@ const Technologies1 = () => {
             <div className="w-1/2">
                 <h3 className='text-3xl sm:text-4xl font-bold mb-8 text-center text-black dark:text-white'>Technologies</h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-4 gap-y-6 p-6 justify-items-center">
-                    <Technologies src="public/assets/mongodb.svg" title="MongoDB" />
-                    <Technologies src="public/assets/express1.svg" title="Express js" />
-                    <Technologies src="public/assets/React.svg" title="React" />
-                    <Technologies src="public/assets/nodejs.svg" title="Node js" />
+                    <Technologies src="./assets/mongodb.svg" title="MongoDB" />
+                    <Technologies src="./assets/express1.svg" title="Express js" />
+                    <Technologies src="./assets/React.svg" title="React" />
+                    <Technologies src="./assets/nodejs.svg" title="Node js" />
                 </div>
             </div>
         </section>
