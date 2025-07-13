@@ -26,9 +26,12 @@ app.use(cors({
     "https://abdullaabdulraoof.vercel.app",
     "https://portfolio-ddlwjuzu9-abdullaabdulraoofs-projects.vercel.app"
   ],
-  methods: ["GET", "POST"],
-  allowedHeaders: ["Content-Type"]
+  methods: ["GET", "POST", "OPTIONS"],
+  allowedHeaders: ["Content-Type"],
+  credentials: true,
 }));
+
+app.options("*", cors()); // handle preflight
 
 // API to receive contact form
 app.post('/a', async (req, res) => {
