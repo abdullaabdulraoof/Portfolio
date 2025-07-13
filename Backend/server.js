@@ -1,0 +1,60 @@
+import express from "express";
+import mongoose from "mongoose";
+import { Contact } from "./models/contact.js";
+import bodyParser from "body-parser";
+import cors from "cors";
+import nodemailer from "nodemailer";
+
+// Connect MongoDB
+mongoose.connect('mongodb://localhost:27017/contact', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+}).then(() => console.log("✅ MongoDB Connected"))
+  .catch(err => console.error("MongoDB connection error:", err));
+
+// Setup Express
+const app = express();
+const port = 3000;
+
+app.use(bodyParser.json());
+app.use(cors());
+
+// API to receive contact form
+app.post('/a', async (req, res) => {
+  const { name, email, message } = req.body;
+
+  try {
+    // Save to MongoDB
+    const saved = await Contact.create({ name, email, message });
+
+    // Nodemailer with Gmail (use App Password, not real one)
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: "contactabdullaabdulraoof@gmail.com",
+        pass: "wvna lqlg qehf zvgs"  // Gmail App Password
+      },
+    });
+
+    const info = await transporter.sendMail({
+      from: `"${name}" <${email}>`,
+      to: "contactabdullaabdulraoof@gmail.com", // Your Gmail
+      subject: "New Portfolio Contact",
+      text: message,
+      html: `<b>From:</b> ${name} <${email}><br /><p>${message}</p>`,
+    });
+
+    console.log("📬 Message sent:", info.messageId);
+
+    res.status(201).json({ success: true });
+  } catch (err) {
+    console.error("❌ Error sending mail:", err);
+    res.status(500).json({ success: false, error: "Failed to send/save message" });
+  }
+});
+
+// Start Server
+app.listen(port, () => {
+  console.log(`🚀 Server running on http://localhost:${port}`);
+});
+  
