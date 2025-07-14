@@ -16,10 +16,8 @@ const allowedOrigins = [
   "https://portfolio-ddlwjuzu9-abdullaabdulraoofs-projects.vercel.app"
 ];
 
-// ✅ 2. Use CORS before everything
-app.use(cors({
+const corsOptions = {
   origin: function (origin, callback) {
-    // allow requests with no origin (like curl/postman) or from allowed domains
     if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
@@ -29,10 +27,13 @@ app.use(cors({
   methods: ["GET", "POST", "OPTIONS"],
   allowedHeaders: ["Content-Type"],
   credentials: true
-}));
+};
 
-// ✅ 3. Preflight handler (must be BEFORE all routes)
-app.options("*", cors());
+// Handle preflight *first*
+app.options("*", cors(corsOptions));
+
+// Then enable actual CORS
+app.use(cors(corsOptions));
 
 // ✅ 4. Middlewares
 app.use(bodyParser.json());
