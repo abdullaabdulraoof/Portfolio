@@ -7,28 +7,18 @@ import nodemailer from "nodemailer";
 import dotenv from 'dotenv';
 dotenv.config();
 
-
-// Connect MongoDB
-mongoose.connect('mongodb+srv://portfolio_user:4Q8LhZjhzDQG6SgV@contact.trepkmk.mongodb.net/contact?retryWrites=true&w=majority', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-}).then(() => console.log("✅ MongoDB Connected"))
-  .catch(err => console.error("MongoDB connection error:", err));
-
 // Setup Express
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
+
+// ✅ Allowed Frontend Origins
 const allowedOrigins = [
-  'https://abdullaabdulraoof.vercel.app',
-  'https://portfolio-ddlwjuzu9-abdullaabdulraoofs-projects.vercel.app'
+  "https://abdullaabdulraoof.vercel.app",
+  "https://portfolio-ddlwjuzu9-abdullaabdulraoofs-projects.vercel.app"
 ];
 
-app.use(bodyParser.json());
-
-
-
-
-app.use(cors({
+// ✅ CORS Configuration (with preflight support)
+const corsOptions = {
   origin: function (origin, callback) {
     if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
@@ -39,43 +29,53 @@ app.use(cors({
   methods: ['GET', 'POST', 'OPTIONS'],
   allowedHeaders: ['Content-Type'],
   credentials: true
-}));
+};
 
-// ✅ Also handle preflight requests
-app.options('*', cors());
+// ✅ Handle preflight OPTIONS requests
+app.options('*', cors(corsOptions));
 
-// Health check route (GET /)
+// ✅ Apply middleware
+app.use(cors(corsOptions));
+app.use(bodyParser.json());
+
+// ✅ MongoDB Connection
+mongoose.connect(process.env.MONGO_URI || 'mongodb+srv://portfolio_user:4Q8LhZjhzDQG6SgV@contact.trepkmk.mongodb.net/contact?retryWrites=true&w=majority', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+}).then(() => console.log("✅ MongoDB Connected"))
+  .catch(err => console.error("MongoDB connection error:", err));
+
+// ✅ Health check route
 app.get('/', (req, res) => {
   res.send('✅ Portfolio backend is running!');
 });
 
-// API to receive contact form
+// ✅ API: Receive contact form
 app.post('/a', async (req, res) => {
   const { name, email, message } = req.body;
 
   try {
     // Save to MongoDB
-    const saved = await Contact.create({ name, email, message });
+    await Contact.create({ name, email, message });
 
-    // Nodemailer with Gmail (use App Password, not real one)
+    // Send email using Nodemailer
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
-  user: process.env.GMAIL_USER,
-  pass: process.env.GMAIL_PASS
-},
+        user: process.env.GMAIL_USER,
+        pass: process.env.GMAIL_PASS
+      },
     });
 
     const info = await transporter.sendMail({
       from: `"${name}" <${email}>`,
-      to: "contactabdullaabdulraoof@gmail.com", // Your Gmail
+      to: "contactabdullaabdulraoof@gmail.com",
       subject: "New Portfolio Contact",
       text: message,
-      html: `<b>From:</b> ${name} <${email}><br /><p>${message}</p>`,
+      html: `<b>From:</b> ${name} <${email}><br /><p>${message}</p>`
     });
 
     console.log("📬 Message sent:", info.messageId);
-
     res.status(201).json({ success: true });
   } catch (err) {
     console.error("❌ Error sending mail:", err);
@@ -83,9 +83,7 @@ app.post('/a', async (req, res) => {
   }
 });
 
-// Start Server
-app.listen(process.env.PORT || 3000, () => {
-  console.log(`🚀 Server running`);
+// ✅ Start the server
+app.listen(port, () => {
+  console.log(`🚀 Server running on port ${port}`);
 });
-
-  
