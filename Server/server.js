@@ -34,6 +34,10 @@ app.use(cors({
   credentials:true
 }));
 
+// Health check route (GET /)
+app.get('/', (req, res) => {
+  res.send('✅ Portfolio backend is running!');
+});
 
 // API to receive contact form
 app.post('/a', async (req, res) => {
