@@ -30,8 +30,10 @@ app.use(bodyParser.json());
 
 // ✅ Use this simplified CORS setup
 app.use(cors({
-  origin: true,
-  credentials:true
+  origin: ['https://abdullaabdulraoof.vercel.app'],
+  methods: ['GET', 'POST'],
+  allowedHeaders: ['Content-Type'],
+  credentials: true
 }));
 
 // Health check route (GET /)
