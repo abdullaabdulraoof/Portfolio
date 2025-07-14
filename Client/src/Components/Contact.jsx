@@ -16,8 +16,9 @@ const Contact = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
         try {
-            await fetch(`${import.meta.env.VITE_BACKEND_URL}/a`, {
+            const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/a`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -25,58 +26,26 @@ const Contact = () => {
                 body: JSON.stringify(formData)
             });
 
-
-
             if (!res.ok) {
                 const errorText = await res.text();
                 console.error("Server returned:", errorText);
-            } else {
-                const data = await res.json();
-                console.log(data);
+                toast.warning('❌ Failed to send message.', { /* ...toast settings... */ });
+                return;
             }
 
             const data = await res.json();
-            if (data.success) {
 
-                // alert("✅ Message sent successfully!");
-                toast.success('Message sent successfully', {
-                    position: "top-right",
-                    autoClose: 5000,
-                    hideProgressBar: false,
-                    closeOnClick: false,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "light",
-                });
-                console.log("Preview URL:", data.previewUrl);
+            if (data.success) {
+                toast.success('✅ Message sent successfully!', { /* ...toast settings... */ });
+                console.log("📬 Preview URL:", data.previewUrl);
                 setFormData({ name: "", email: "", message: "" });
             } else {
-                // alert("❌ Failed to send message.");
-                toast.warning('Failed to send message.', {
-                    position: "top-right",
-                    autoClose: 5000,
-                    hideProgressBar: false,
-                    closeOnClick: false,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "light",
-                });
+                toast.warning('❌ Failed to send message.', { /* ...toast settings... */ });
             }
+
         } catch (err) {
-            console.error("Error:", err);
-            // alert("❌ Something went wrong.");
-            toast.warning('Something went wrong.', {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: false,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-            });
+            console.error("❌ Error:", err);
+            toast.error('❌ Something went wrong.', { /* ...toast settings... */ });
         }
     };
 
