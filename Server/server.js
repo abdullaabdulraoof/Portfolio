@@ -28,13 +28,21 @@ app.use(bodyParser.json());
 
 
 
-// ✅ Use this simplified CORS setup
 app.use(cors({
-  origin: ['https://abdullaabdulraoof.vercel.app'],
-  methods: ['GET', 'POST'],
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('CORS not allowed'));
+    }
+  },
+  methods: ['GET', 'POST', 'OPTIONS'],
   allowedHeaders: ['Content-Type'],
   credentials: true
 }));
+
+// ✅ Also handle preflight requests
+app.options('*', cors());
 
 // Health check route (GET /)
 app.get('/', (req, res) => {
