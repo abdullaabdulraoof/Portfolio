@@ -30,9 +30,8 @@ app.use(bodyParser.json());
 
 // ✅ Use this simplified CORS setup
 app.use(cors({
-  origin: ['https://abdullaabdulraoof.vercel.app'],
-  methods: ['GET', 'POST'],
-  allowedHeaders: ['Content-Type'],
+  origin: true,
+  credentials:true
 }));
 
 
