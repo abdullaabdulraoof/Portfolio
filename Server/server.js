@@ -7,17 +7,15 @@ import nodemailer from "nodemailer";
 import dotenv from 'dotenv';
 dotenv.config();
 
-// Setup Express
 const app = express();
 const port = process.env.PORT || 3000;
 
-// ✅ Allowed Frontend Origins
 const allowedOrigins = [
   "https://abdullaabdulraoof.vercel.app",
   "https://portfolio-ddlwjuzu9-abdullaabdulraoofs-projects.vercel.app"
 ];
 
-// ✅ CORS Configuration (with preflight support)
+// ✅ CORS options
 const corsOptions = {
   origin: function (origin, callback) {
     if (!origin || allowedOrigins.includes(origin)) {
@@ -31,34 +29,32 @@ const corsOptions = {
   credentials: true
 };
 
-// ✅ Handle preflight OPTIONS requests
+// ✅ Add this BEFORE any routes to handle preflight requests
 app.options('*', cors(corsOptions));
 
-// ✅ Apply middleware
+// ✅ Use CORS middleware
 app.use(cors(corsOptions));
 app.use(bodyParser.json());
 
-// ✅ MongoDB Connection
+// ✅ MongoDB connection
 mongoose.connect(process.env.MONGO_URI || 'mongodb+srv://portfolio_user:4Q8LhZjhzDQG6SgV@contact.trepkmk.mongodb.net/contact?retryWrites=true&w=majority', {
   useNewUrlParser: true,
   useUnifiedTopology: true
 }).then(() => console.log("✅ MongoDB Connected"))
   .catch(err => console.error("MongoDB connection error:", err));
 
-// ✅ Health check route
+// ✅ Health route
 app.get('/', (req, res) => {
   res.send('✅ Portfolio backend is running!');
 });
 
-// ✅ API: Receive contact form
+// ✅ POST /a route
 app.post('/a', async (req, res) => {
   const { name, email, message } = req.body;
 
   try {
-    // Save to MongoDB
     await Contact.create({ name, email, message });
 
-    // Send email using Nodemailer
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
@@ -72,18 +68,18 @@ app.post('/a', async (req, res) => {
       to: "contactabdullaabdulraoof@gmail.com",
       subject: "New Portfolio Contact",
       text: message,
-      html: `<b>From:</b> ${name} <${email}><br /><p>${message}</p>`
+      html: `<b>From:</b> ${name} <${email}><br /><p>${message}</p>`,
     });
 
     console.log("📬 Message sent:", info.messageId);
     res.status(201).json({ success: true });
   } catch (err) {
-    console.error("❌ Error sending mail:", err);
+    console.error("❌ Error:", err);
     res.status(500).json({ success: false, error: "Failed to send/save message" });
   }
 });
 
-// ✅ Start the server
+// ✅ Start server
 app.listen(port, () => {
   console.log(`🚀 Server running on port ${port}`);
 });
