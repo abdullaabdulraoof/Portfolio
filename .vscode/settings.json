@@ -1,0 +1,11 @@
+{
+  "css.customData": [],
+  "css.validate": true,
+  "css.lint.unknownAtRules": "ignore",
+  "tailwindCSS.includeLanguages": {
+    "plaintext": "javascript"
+  },
+  "files.associations": {
+    "*.css": "tailwindcss"
+  }
+}
