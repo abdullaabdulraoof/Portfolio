@@ -9,8 +9,7 @@ export default function Navbar() {
 
     const navLinks = [
         { name: "Skills", id: "skills", type: "scroll" },
-        { name: "Projects", id: "projects", type: "scroll" },
-        { name: "Portfolio", id: "portfolio", type: "route", path: "/portfolio" },
+        { name: "Projects", id: "portfolio", type: "route", path: "/portfolio" },
         { name: "Experience", id: "experience", type: "scroll" },
         { name: "Contact", id: "contact", type: "scroll" },
     ];

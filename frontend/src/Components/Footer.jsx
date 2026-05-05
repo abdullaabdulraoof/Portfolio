@@ -23,7 +23,7 @@ const Footer = () => {
                             <div className="bg-white/5 p-2 rounded-lg group-hover:bg-red-500/10 transition-colors">
                                 <Mail size={22} className="text-red-500" />
                             </div>
-                            <span className="text-base font-medium">abdullaabdulraoof@mail.com</span>
+                            <span className="text-base font-medium">abdullaabdulraoof@gmail.com</span>
                         </a>
 
                         {/* GitHub */}

@@ -3,7 +3,6 @@ import React, { useEffect } from 'react';
 import Navbar from './Components/Navbar'
 import Hero from './Section/hero'
 import Skills from './Section/skills'
-import Projects from './Section/projects'
 import Experiance from './Section/Experiance'
 import Whyme from './Section/Whyme'
 import Contact from './Section/Contact'
@@ -34,7 +33,6 @@ const Home = () => (
   <>
     <Hero />
     <Skills />
-    <Projects />
     <Experiance />
     <Whyme />
     <Contact />

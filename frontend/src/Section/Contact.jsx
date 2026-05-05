@@ -64,7 +64,7 @@ const Contact = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        
+
         if (!form.name || !form.email || !form.message) {
             toast.error('Please fill out all fields.');
             return;
@@ -134,7 +134,7 @@ const Contact = () => {
                                 name="email"
                                 value={form.email}
                                 onChange={handleChange}
-                                placeholder="abdullaabdulraoof@mail.com"
+                                placeholder="abdullaabdulraoof@gmail.com"
                                 className="w-full bg-white/5 border-b border-white/10 py-2 px-1 text-white focus:border-blue-500 outline-none transition-all placeholder:text-gray-700 focus:bg-white/10"
                             />
                         </div>
@@ -163,7 +163,7 @@ const Contact = () => {
 
                 {/* Right Side: Visual Graphic */}
                 <div className="hidden lg:flex relative items-center justify-center w-full h-[400px] xl:h-[500px]">
-                    <div 
+                    <div
                         className={`w-full h-full flex items-center justify-center transition-opacity duration-1000 ${inView ? 'opacity-100' : 'opacity-0'}`}
                     >
                         <Globe

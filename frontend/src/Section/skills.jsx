@@ -15,7 +15,7 @@ const skillsData = [
     },
     {
         category: "AI Integration",
-        skills: ["Python", "Computer Vision", "RAG", "Model Integration"],
+        skills: ["RAG", "LLM", "FAISS", "LangChain", "ollamma"],
         icons: ["/logos/🙃 Logos_ python.svg"]
     },
     {
@@ -25,7 +25,7 @@ const skillsData = [
     },
     {
         category: "Cloud & Deployment",
-        skills: ["AWS EC2", "Vercel", "Render", "Server Deployment"],
+        skills: ["AWS EC2", "Vercel", "Render", "Nginx"],
         icons: [
             "/logos/🙃 Logos_ aws.svg", 
             "/logos/🙃 Logos_ vercel.svg", 
@@ -34,7 +34,7 @@ const skillsData = [
     },
     {
         category: "Tools & Workflow",
-        skills: ["Git & GitHub", "REST APIs", "Real-time Systems", "Nginx"],
+        skills: ["Git & GitHub", "REST APIs", "MVC Architecture"],
         icons: ["/logos/Group.svg"]
     }
 ];

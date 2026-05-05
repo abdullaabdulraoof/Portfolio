@@ -39,7 +39,7 @@ const Hero = () => {
                             <span className="text-blue-400 font-bold inline-block">
                                 Abdulla Abdul Raoof
                             </span>{" "}
-                            — building intelligent systems, scalable web apps, and IoT-driven solutions.
+                            — <br/>Full Stack Developer | Real-Time Systems | AI Integration | AWS Deployment
                         </p>
                     </div>
                 </div>
